@@ -1,0 +1,19 @@
+<form action="">
+
+    <div class="container_login">
+        <h1>Incluir na lista de Compras</h1>
+        
+        <h1>Produto</h1>
+        <h3>Nome</h3>
+        <input type="text" name="nome" id="nome" placeholder="--------" [(ngModel)]="produto.nome">
+        
+        <h3>Marca</h3>
+        <input type="text" name="marca" id="marca" placeholder="--------" [(ngModel)]="produto.marca">
+        
+        <h3>Quantidade</h3>
+        <input type="text" name="quantidade" id="quantidade" placeholder="0" [(ngModel)]="produto.quantidade">
+        
+        <input type="button" value="ncluir na" class="btn" (click)="incluirProdutoNaLista()">
+        
+    </div>
+</form>
