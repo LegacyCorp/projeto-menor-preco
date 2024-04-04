@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IncluirProdutoComponent } from '../../components/incluir-produto/incluir-produto.component';
+import { BodyComponent } from '../../components/body/body.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [IncluirProdutoComponent],
+  imports: [BodyComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

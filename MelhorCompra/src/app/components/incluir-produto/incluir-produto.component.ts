@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Produto } from '../../models/Produto';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ProdutoService } from '../../servico/produto.service';
+import { ProdutoService } from '../../service/produto.service';
 
 @Component({
   selector: 'app-incluir-produto',
@@ -19,11 +19,10 @@ export class IncluirProdutoComponent {
   produto = new Produto()
 
   //Visibilidade botao cadastrar
-  btnCadastro:boolean = true
+  //btnCadastro:boolean = true
 
   //construtor
   constructor(private servico:ProdutoService) {
-
   }
 
   //Metodo para cadastrar produto na lista
