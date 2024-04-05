@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IncluirProdutoComponent } from '../incluir-produto/incluir-produto.component';
-import { HttpClient } from '@angular/common/http';
+import { ProdutoIncluirComponent } from '../produto-incluir/produto-incluir.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [IncluirProdutoComponent],
+  imports: [ProdutoIncluirComponent, HeaderComponent],
   templateUrl: './body.component.html',
   styleUrl: './body.component.css'
 })

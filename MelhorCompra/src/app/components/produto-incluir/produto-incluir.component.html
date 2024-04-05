@@ -1,0 +1,39 @@
+
+<div class="container_produto_incluir">
+  <h1>Incluir Produto na Cesta de Compras</h1>
+  
+  <h3>Nome do Produto</h3>
+  <input type="text" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
+
+  <h3>Marca (opcional)</h3>
+  <input type="text" name="marca" id="marca" placeholder="----------" [(ngModel)]="produto.marca">
+
+  <h3>Quantidade</h3>
+  <input type="text" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
+
+  <input type="button" value="Cadastrar" class="btn" (click)="cadastrarProduto()">
+</div>
+
+<div>
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Marca</th>
+        <th>Quantidade</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of produtos; index as i">
+        <td>{{i+1}}</td>
+        <td>{{p.nome}}</td>
+        <td>{{p.marca}}</td>>
+        <td>{{p.quantidade}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
