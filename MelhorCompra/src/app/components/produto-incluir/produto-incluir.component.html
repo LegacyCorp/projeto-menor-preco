@@ -1,6 +1,6 @@
 
 <div class="container_produto_incluir">
-  <h1>Incluir Produto na Cesta de Compras</h1>
+  <h1>INCLUIR PRODUTO NA CESTA DE COMPRAS</h1>
   
   <h3>Nome do Produto</h3>
   <input type="text" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
@@ -14,12 +14,13 @@
   <input type="button" value="Cadastrar" class="btn" (click)="cadastrarProduto()">
 </div>
 
+<h1>LISTA DE COMPRAS</h1>
 <div>
   <table class="table">
     
     <thead>
       <tr>
-        <th>#</th>
+        <th class="numberProduct">#</th>
         <th>Nome</th>
         <th>Marca</th>
         <th>Quantidade</th>
@@ -30,9 +31,37 @@
       <tr *ngFor="let p of produtos; index as i">
         <td>{{i+1}}</td>
         <td>{{p.nome}}</td>
-        <td>{{p.marca}}</td>>
+        <td>{{p.marca}}</td>
         <td>{{p.quantidade}}</td>
       </tr>
+    </tbody>
+
+  </table>
+
+  <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco()">
+</div>
+
+<h1>OPÇÕES DE COMPRA / PREÇO</h1>
+<div>
+  <table class="table">
+    
+    <thead>
+      <tr>
+        <th class="numberProduct">#</th>
+        <th>Nome</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!--
+      <tr *ngFor="let p of produtos; index as i">
+        <td>{{i+1}}</td>
+        <td>{{p.nome}}</td>
+        <td>{{p.marca}}</td>
+        <td>{{p.quantidade}}</td>
+      </tr>
+      -->
     </tbody>
 
   </table>
