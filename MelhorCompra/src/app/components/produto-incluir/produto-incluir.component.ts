@@ -66,8 +66,5 @@ export class ProdutoIncluirComponent {
         error: (err) => console.log(err)
       }
     )
-
-    console.log("this.produtoData" + this.produtoData)
-
   }
 }
