@@ -42,6 +42,9 @@ export class ProdutoIncluirComponent {
     this.service.procurarMelhorPreco(produtos).subscribe(
       {
         next: (res) => {
+
+          console.log(res)
+
           this.produtoData = {
             name:res.tempo,
             valor:"",
@@ -57,12 +60,14 @@ export class ProdutoIncluirComponent {
               uf:""
             }
           }
+
+          console.log(res.tempo)
         },
         error: (err) => console.log(err)
       }
     )
 
-    console.log(this.produtoData)
+    console.log("this.produtoData" + this.produtoData)
 
   }
 }
