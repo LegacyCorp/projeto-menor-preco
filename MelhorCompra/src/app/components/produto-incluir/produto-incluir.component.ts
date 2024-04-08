@@ -4,6 +4,7 @@ import { Produto } from '../../models/Produto';
 import { FormsModule } from '@angular/forms';
 import { ProdutoService } from '../../service/produto.service';
 import { HttpClient } from '@angular/common/http';
+import { ProdutoData } from '../../models/ProdutoData';
 
 @Component({
   selector: 'app-produto-incluir',
@@ -21,6 +22,9 @@ export class ProdutoIncluirComponent {
   //JSON de produtos
   produtos:Produto[] = []
 
+  //Popular objeto quano fizer consulta
+  produtoData?:ProdutoData
+
   constructor(private service:ProdutoService) { }
 
   cadastrarProduto():void {
@@ -34,7 +38,31 @@ export class ProdutoIncluirComponent {
      alert('Produto cadastrado com sucesso!')
   }
 
-  procurarMelhorPreco(produtos:Produto[]):void {
-    this.service.procurarMelhorPreco(produtos)
+  procurarMelhorPreco(produtos:Produto[]) {
+    this.service.procurarMelhorPreco(produtos).subscribe(
+      {
+        next: (res) => {
+          this.produtoData = {
+            name:res.tempo,
+            valor:"",
+            tempo:"",
+            distancia:"",
+            estabelecimento: {
+              nomeEmpresa:"",
+              tp_logr:"",
+              nm_logr:"",
+              nr_logr:"",
+              bairro:"",
+              mun:"",
+              uf:""
+            }
+          }
+        },
+        error: (err) => console.log(err)
+      }
+    )
+
+    console.log(this.produtoData)
+
   }
 }

@@ -11,6 +11,18 @@
   font-size: large;
 }
 
+.container_lista_compra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+}
+
 h1 {
   color: cornflowerblue;
   margin-bottom: 25px;
@@ -63,6 +75,7 @@ input[type="button"] {
   font-family: 'Segoe UI';
   font-size: medium;
   font-weight: 500;
+  text-wrap: balance;
 
   cursor: pointer;
 }

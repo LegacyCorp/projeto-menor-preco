@@ -14,55 +14,57 @@
   <input type="button" value="Cadastrar" class="btn" (click)="cadastrarProduto()">
 </div>
 
-<h1>LISTA DE COMPRAS</h1>
-<div>
-  <table class="table">
-    
-    <thead>
-      <tr>
-        <th class="numberProduct">#</th>
-        <th>Nome</th>
-        <th>Marca</th>
-        <th>Quantidade</th>
-      </tr>
-    </thead>
+<div class="container_lista_compra">
+  <h1>LISTA DE COMPRAS</h1>
+  
+    <table class="table">
+      
+      <thead>
+        <tr>
+          <th class="numberProduct">#</th>
+          <th>Nome</th>
+          <th>Marca</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr *ngFor="let p of produtos; index as i">
-        <td>{{i+1}}</td>
-        <td>{{p.nome}}</td>
-        <td>{{p.marca}}</td>
-        <td>{{p.quantidade}}</td>
-      </tr>
-    </tbody>
+      <tbody>
+        <tr *ngFor="let p of produtos; index as i">
+          <td>{{i+1}}</td>
+          <td>{{p.nome}}</td>
+          <td>{{p.marca}}</td>
+          <td>{{p.quantidade}}</td>
+        </tr>
+      </tbody>
 
-  </table>
+    </table>
 
-  <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco(produtos)">
+    <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco(produtos)">
+
 </div>
 
-<h1>OPÇÕES DE COMPRA / PREÇO</h1>
 <div>
-  <table class="table">
-    
-    <thead>
-      <tr>
-        <th class="numberProduct">#</th>
-        <th>Nome</th>
-        <th>Preço</th>
-      </tr>
-    </thead>
+  <h1>OPÇÕES DE COMPRA / PREÇO</h1>
+    <table class="table">
+      
+      <thead>
+        <tr>
+          <th class="numberProduct">#</th>
+          <th>Nome</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <!--
-      <tr *ngFor="let p of produtos; index as i">
-        <td>{{i+1}}</td>
-        <td>{{p.nome}}</td>
-        <td>{{p.marca}}</td>
-        <td>{{p.quantidade}}</td>
-      </tr>
-      -->
-    </tbody>
+      <tbody>
+        <!--
+        <tr *ngFor="let p of produtos; index as i">
+          <td>{{i+1}}</td>
+          <td>{{p.nome}}</td>
+          <td>{{p.marca}}</td>
+          <td>{{p.quantidade}}</td>
+        </tr>
+        -->
+      </tbody>
 
-  </table>
+    </table>
 </div>
