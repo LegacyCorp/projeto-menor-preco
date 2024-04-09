@@ -52,18 +52,19 @@
           <th class="numberProduct">#</th>
           <th>Nome</th>
           <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Preço Total</th>
         </tr>
       </thead>
 
       <tbody>
-        <!--
-        <tr *ngFor="let p of produtos; index as i">
+        <tr *ngFor="let produto of produtosNaLista; index as i">
           <td>{{i+1}}</td>
-          <td>{{p.nome}}</td>
-          <td>{{p.marca}}</td>
-          <td>{{p.quantidade}}</td>
+          <td>{{produto.desc}}</td>
+          <td>`R$ {{produto.precoMin}}`</td>
+          <td>{{produto.quantidade}}</td>
+          <td>`R$ 00,00`</td>
         </tr>
-        -->
       </tbody>
 
     </table>
