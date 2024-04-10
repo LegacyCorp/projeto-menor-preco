@@ -20,7 +20,9 @@ export class ProdutoIncluirComponent {
   produto = new Produto()
   
   produtos:Produto[] = []
-  produtosNaLista: Produto[] = []
+  listaMenorPreco: Produto[] = []
+  listaMenorPrecoComDistancia: Produto[] = []
+  listaMenorPrecoDoApp : Produto[] = []
 
   //Popular objeto quando fizer consulta
   produtoData?:ProdutoData
@@ -41,7 +43,8 @@ export class ProdutoIncluirComponent {
   procurarMelhorPreco(produtos:Produto[]) {
 
     //Limpar lista de compras
-    this.produtosNaLista = []
+    this.listaMenorPreco = []
+    this.listaMenorPrecoComDistancia = []
 
     produtos.forEach(produto => {
       this.service.procurarMelhorPreco(produto).subscribe(
@@ -58,27 +61,20 @@ export class ProdutoIncluirComponent {
             produtos:res.produtos
           }
 
-          this.produto.quantidade = produto.quantidade
-          this.produto.precoMax = this.produtoData?.precos.max
-          this.produto.precoMin = this.produtoData?.precos.min
-          this.produto.desc = this.produtoData?.produtos?.at(0)?.desc
-          this.produto.distkm = this.produtoData?.produtos?.at(0)?.distkm
-          this.produto.valor = this.produtoData?.produtos?.at(0)?.valor
-          this.produto.tempo = this.produtoData?.produtos?.at(0)?.tempo
-          this.produto.nm_empresa = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_emp
-          this.produto.nm_logr = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_logr
-          this.produto.nr_logr = this.produtoData?.produtos?.at(0)?.estabelecimento.nr_logr
-          this.produto.bairro = this.produtoData?.produtos?.at(0)?.estabelecimento.bairro
-          this.produto.mun = this.produtoData?.produtos?.at(0)?.estabelecimento.mun
-          this.produto.uf = this.produtoData?.produtos?.at(0)?.estabelecimento.uf
-
-          //this.produtosNaLista.push(this.tempProd)
-          this.produtosNaLista.push(this.produto)
-          console.log(this.produtosNaLista)
+          this.obterListaMenorPreco(produto.quantidade)
+          this.listaMenorPreco.push(this.produto)
 
           //Limpar objeto
           this.produto = new Produto()
 
+          this.obterListaMenorPrecoConsiderandoDistancia(produto.quantidade)
+          this.listaMenorPrecoComDistancia.push(this.produto)
+
+          //Limpar objeto
+          this.produto = new Produto()
+
+
+          
           //Mensagem
           //alert('Melhor Preço do produto encontrado com sucesso!')
         },
@@ -87,65 +83,50 @@ export class ProdutoIncluirComponent {
       )
     });
 
-    /*
-    this.service.procurarMelhorPreco(produtos).subscribe(
-      {
-        next: (res) => {
+  }
 
-          console.log(res)
-          
-          this.produtoData = {
-            precos: {
-              max:res.precos.max,
-              min:res.precos.min
-            },
-            produtos:res.produtos
-          }
+  obterListaMenorPrecoConsiderandoDistancia(quantidade: number): void {
+    let tempValor: number = Number(this.produtoData?.precos.max)
+    let tempIndex: number = 0
+    let index: number = 0
+    
+    this.produtoData?.produtos.forEach(produto => {
+      if(Number(produto.distkm) >= 2 && Number(produto.valor) < tempValor)
+        index = tempIndex
+    });
 
-          //console.log(`valorProduto => ${this.produtoData?.produtos?.at(0)?.valor}`)
-          //console.log(`valorProduto => ${this.produtoData?.produtos?.at(10)?.valor}`)
+    this.produto.quantidade = quantidade
+    this.produto.precoMax = this.produtoData?.precos.max
+    this.produto.precoMin = this.produtoData?.precos.min
+    this.produto.desc = this.produtoData?.produtos?.at(index)?.desc
+    this.produto.distkm = this.produtoData?.produtos?.at(index)?.distkm
+    this.produto.valor = this.produtoData?.produtos?.at(index)?.valor
+    this.produto.tempo = this.produtoData?.produtos?.at(index)?.tempo
+    this.produto.nm_empresa = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_emp
+    this.produto.nm_logr = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_logr
+    this.produto.nr_logr = this.produtoData?.produtos?.at(index)?.estabelecimento.nr_logr
+    this.produto.bairro = this.produtoData?.produtos?.at(index)?.estabelecimento.bairro
+    this.produto.mun = this.produtoData?.produtos?.at(index)?.estabelecimento.mun
+    this.produto.uf = this.produtoData?.produtos?.at(index)?.estabelecimento.uf
+    
+  }
 
-          /*
-          this.tempProd.precoMax = this.produtoData?.precos.max
-          this.tempProd.precoMin = this.produtoData?.precos.min
-          this.tempProd.desc = this.produtoData?.produtos?.at(0)?.desc
-          this.tempProd.distkm = this.produtoData?.produtos?.at(0)?.distkm
-          this.tempProd.valor = this.produtoData?.produtos?.at(0)?.valor
-          this.tempProd.tempo = this.produtoData?.produtos?.at(0)?.tempo
-          this.tempProd.nm_empresa = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_emp
-          this.tempProd.nm_logr = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_logr
-          this.tempProd.nr_logr = this.produtoData?.produtos?.at(0)?.estabelecimento.nr_logr
-          this.tempProd.bairro = this.produtoData?.produtos?.at(0)?.estabelecimento.bairro
-          this.tempProd.mun = this.produtoData?.produtos?.at(0)?.estabelecimento.mun
-          this.tempProd.uf = this.produtoData?.produtos?.at(0)?.estabelecimento.uf
-          
-
-          this.produto.precoMax = this.produtoData?.precos.max
-          this.produto.precoMin = this.produtoData?.precos.min
-          this.produto.desc = this.produtoData?.produtos?.at(0)?.desc
-          this.produto.distkm = this.produtoData?.produtos?.at(0)?.distkm
-          this.produto.valor = this.produtoData?.produtos?.at(0)?.valor
-          this.produto.tempo = this.produtoData?.produtos?.at(0)?.tempo
-          this.produto.nm_empresa = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_emp
-          this.produto.nm_logr = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_logr
-          this.produto.nr_logr = this.produtoData?.produtos?.at(0)?.estabelecimento.nr_logr
-          this.produto.bairro = this.produtoData?.produtos?.at(0)?.estabelecimento.bairro
-          this.produto.mun = this.produtoData?.produtos?.at(0)?.estabelecimento.mun
-          this.produto.uf = this.produtoData?.produtos?.at(0)?.estabelecimento.uf
-
-          //this.produtosNaLista.push(this.tempProd)
-          this.produtosNaLista.push(this.produto)
-          console.log(this.produtosNaLista)
-
-          //Limpar objeto
-          this.produto = new Produto()
-
-          //Mensagem
-          alert('Melhor Preço do produto encontrado com sucesso!')
-        },
-        error: (err) => console.log(err)
-      }
-    ) 
-    */
+  obterListaMenorPreco(quantidade: number): void {
+    this.produto.quantidade = quantidade
+    this.produto.precoMax = this.produtoData?.precos.max
+    this.produto.precoMin = this.produtoData?.precos.min
+    this.produto.desc = this.produtoData?.produtos?.at(0)?.desc
+    this.produto.distkm = this.produtoData?.produtos?.at(0)?.distkm
+    this.produto.valor = this.produtoData?.produtos?.at(0)?.valor
+    this.produto.tempo = this.produtoData?.produtos?.at(0)?.tempo
+    this.produto.nm_empresa = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_emp
+    this.produto.nm_logr = this.produtoData?.produtos?.at(0)?.estabelecimento?.nm_logr
+    this.produto.nr_logr = this.produtoData?.produtos?.at(0)?.estabelecimento.nr_logr
+    this.produto.bairro = this.produtoData?.produtos?.at(0)?.estabelecimento.bairro
+    this.produto.mun = this.produtoData?.produtos?.at(0)?.estabelecimento.mun
+    this.produto.uf = this.produtoData?.produtos?.at(0)?.estabelecimento.uf
   }
 }
+
+
+
