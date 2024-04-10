@@ -67,7 +67,7 @@
           <td>{{produto.desc}}</td>
           <td>`R$ {{produto.precoMin}}`</td>
           <td>{{produto.quantidade}}</td>
-          <td>`R$ {{produto.quantidade * produto.valor}}`</td>
+          <td>`R$ {{(produto.quantidade * produto.valor).toFixed(2)}}`</td>
         </tr>
       </tbody>
     </table>
@@ -75,7 +75,37 @@
 
     
   <div>
-    <h1>opção #2. Menor Preço Levando em Conta Distância (até 1km)</h1>
+    <h1>opção #2. Menor Preço Levando em Conta Distância (até 2km)</h1>
+    <table class="table">
+      
+      <thead>
+        <tr>
+          <th class="numberProduct">#</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Distância</th>
+          <th>Estabelecimento</th>
+          <th>Preço Total</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr *ngFor="let produto of listaMenorPrecoComDistancia; index as i">
+          <td>{{i+1}}</td>
+          <td>{{produto.desc}}</td>
+          <td>`R$ {{produto.precoMin}}`</td>
+          <td>{{produto.quantidade}}</td>
+          <td>{{produto.distkm}}</td>
+          <td>{{produto.nm_empresa}}</td>
+          <td>`R$ {{(produto.quantidade * produto.valor).toFixed(2)}}`</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h1>opção #3. Menor Preço <strong style="color: yellow;">ENTREGUE EM SUA CASA</strong></h1>
     <table class="table">
       
       <thead>
@@ -92,13 +122,12 @@
         <tr *ngFor="let produto of listaMenorPrecoComDistancia; index as i">
           <td>{{i+1}}</td>
           <td>{{produto.desc}}</td>
-          <td>`R$ {{produto.precoMin}}`</td>
+          <td>`R$ {{produto.valor * 1.1}}`</td>
           <td>{{produto.quantidade}}</td>
-          <td>`R$ {{produto.quantidade * produto.valor}}`</td>
+          <td>`R$ {{(produto.quantidade * (produto.valor * 1.1)).toFixed(2)}}`</td>
         </tr>
       </tbody>
     </table>
   </div>
-
 
 </div>

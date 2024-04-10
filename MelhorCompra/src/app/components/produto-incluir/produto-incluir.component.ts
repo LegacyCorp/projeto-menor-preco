@@ -89,25 +89,39 @@ export class ProdutoIncluirComponent {
     let tempValor: number = Number(this.produtoData?.precos.max)
     let tempIndex: number = 0
     let index: number = 0
+    let encontrouProdutoMaisBarato = false
     
     this.produtoData?.produtos.forEach(produto => {
-      if(Number(produto.distkm) >= 2 && Number(produto.valor) < tempValor)
+      console.log(`Distancia: ${produto.distkm}`)
+      if(Number(produto.distkm) <= 2 && Number(produto.valor) < tempValor) {
+        console.log("Aqui...")
         index = tempIndex
+        tempValor = Number(produto.valor)
+        encontrouProdutoMaisBarato = true
+      }
+
+      tempIndex +=1
+
     });
 
-    this.produto.quantidade = quantidade
-    this.produto.precoMax = this.produtoData?.precos.max
-    this.produto.precoMin = this.produtoData?.precos.min
-    this.produto.desc = this.produtoData?.produtos?.at(index)?.desc
-    this.produto.distkm = this.produtoData?.produtos?.at(index)?.distkm
-    this.produto.valor = this.produtoData?.produtos?.at(index)?.valor
-    this.produto.tempo = this.produtoData?.produtos?.at(index)?.tempo
-    this.produto.nm_empresa = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_emp
-    this.produto.nm_logr = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_logr
-    this.produto.nr_logr = this.produtoData?.produtos?.at(index)?.estabelecimento.nr_logr
-    this.produto.bairro = this.produtoData?.produtos?.at(index)?.estabelecimento.bairro
-    this.produto.mun = this.produtoData?.produtos?.at(index)?.estabelecimento.mun
-    this.produto.uf = this.produtoData?.produtos?.at(index)?.estabelecimento.uf
+    if(encontrouProdutoMaisBarato) {
+      this.produto.quantidade = quantidade
+      this.produto.precoMax = this.produtoData?.precos.max
+      this.produto.precoMin = this.produtoData?.precos.min
+      this.produto.desc = this.produtoData?.produtos?.at(index)?.desc
+      this.produto.distkm = this.produtoData?.produtos?.at(index)?.distkm
+      this.produto.valor = this.produtoData?.produtos?.at(index)?.valor
+      this.produto.tempo = this.produtoData?.produtos?.at(index)?.tempo
+      this.produto.nm_empresa = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_emp
+      this.produto.nm_logr = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_logr
+      this.produto.nr_logr = this.produtoData?.produtos?.at(index)?.estabelecimento.nr_logr
+      this.produto.bairro = this.produtoData?.produtos?.at(index)?.estabelecimento.bairro
+      this.produto.mun = this.produtoData?.produtos?.at(index)?.estabelecimento.mun
+      this.produto.uf = this.produtoData?.produtos?.at(index)?.estabelecimento.uf
+    }
+    else {
+      alert("Não foi encontrado produto mais barato em um raio de 2Km!")
+    }
     
   }
 
