@@ -6,8 +6,8 @@ export class Produto {
     precoMax: string | any = ""
     precoMin: string | any = ""
     desc: string | any = ""
-    distkm: number | any = ""
-    valor: number | any = ""
+    distkm: number = 0
+    valor: number = 0
     tempo: string | any = ""
     nm_empresa: string | any = ""
     tp_logr:string | any = ""
@@ -16,4 +16,6 @@ export class Produto {
     bairro:string | any = ""
     mun:string | any = ""
     uf:string | any = ""
+
+    precoTotal:number = 0
 }

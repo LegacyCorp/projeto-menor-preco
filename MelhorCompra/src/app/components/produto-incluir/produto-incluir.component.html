@@ -67,15 +67,17 @@
           <td>{{produto.desc}}</td>
           <td>`R$ {{produto.precoMin}}`</td>
           <td>{{produto.quantidade}}</td>
-          <td>`R$ {{(produto.quantidade * produto.valor).toFixed(2)}}`</td>
+          <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
         </tr>
       </tbody>
     </table>
+
+    <h1>`Preço total da compra: R$ {{precoTotalListaMenorPreco.toFixed(2)}}`</h1>
   </div>
 
     
   <div>
-    <h1>opção #2. Menor Preço Levando em Conta Distância (até 2km)</h1>
+    <h1>opção #2. Menor Preço Levando em Consideração Distância (até 2km)</h1>
     <table class="table">
       
       <thead>
@@ -94,14 +96,16 @@
         <tr *ngFor="let produto of listaMenorPrecoComDistancia; index as i">
           <td>{{i+1}}</td>
           <td>{{produto.desc}}</td>
-          <td>`R$ {{produto.precoMin}}`</td>
+          <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
           <td>{{produto.quantidade}}</td>
           <td>{{produto.distkm}}</td>
           <td>{{produto.nm_empresa}}</td>
-          <td>`R$ {{(produto.quantidade * produto.valor).toFixed(2)}}`</td>
+          <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
         </tr>
       </tbody>
     </table>
+
+    <h1>`Preço total da compra: R$ {{(precoTotalListaMenorPrecoConsiderandoDistancia).toFixed(2)}}`</h1>
   </div>
 
   <div>
@@ -119,15 +123,17 @@
       </thead>
       
       <tbody>
-        <tr *ngFor="let produto of listaMenorPrecoComDistancia; index as i">
+        <tr *ngFor="let produto of listaMenorPrecoDoApp; index as i">
           <td>{{i+1}}</td>
           <td>{{produto.desc}}</td>
-          <td>`R$ {{produto.valor * 1.1}}`</td>
+          <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
           <td>{{produto.quantidade}}</td>
-          <td>`R$ {{(produto.quantidade * (produto.valor * 1.1)).toFixed(2)}}`</td>
+          <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
         </tr>
       </tbody>
     </table>
+
+    <h1>`Preço total da compra: R$ {{precoTotalListaMenorPrecoDoApp.toFixed(2)}}`</h1>
   </div>
 
 </div>
