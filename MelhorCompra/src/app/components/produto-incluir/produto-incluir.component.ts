@@ -38,6 +38,7 @@ export class ProdutoIncluirComponent {
   cadastrarProduto():void {
     this.produtos.push(this.produto)
     console.log("produtos.length = " + this.produtos.length)
+    console.log(`produto.codigo = ${this.produto.codigo}`)
 
      //Limpar formulário
      this.produto = new Produto()
@@ -171,6 +172,21 @@ export class ProdutoIncluirComponent {
     });
 
   }
+
+/*
+  alterar(): void {
+    //Obter posicao no vetor onde esta o produto
+    let posicao = this.produtos.findIndex(obj => {
+      return obj.codigo = 
+    })
+  }
+  */
+
+  remover(posicao: number): void {
+    this.produtos.splice(posicao , 1)
+    console.log(`produtos.legth = ${this.produtos.length}`)
+  }
+  
 }
 
 

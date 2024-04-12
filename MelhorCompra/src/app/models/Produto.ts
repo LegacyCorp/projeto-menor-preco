@@ -1,4 +1,5 @@
 export class Produto {
+    codigo: number = 0
     nome:string = ""
     marca:string = ""
     quantidade: number = 0

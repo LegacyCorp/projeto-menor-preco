@@ -11,6 +11,8 @@
   <h3>Quantidade</h3>
   <input type="text" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
 
+  <input type="text" value="{{produtos.length}}" name="codigo" id="codigo" hidden="true" [(ngModel)]="produto.codigo">
+  
   <input type="button" value="Cadastrar" class="btn" (click)="cadastrarProduto()">
 </div>
 
@@ -37,6 +39,8 @@
         </tr>
       </tbody>
 
+      <!-- <input type="button" value="Alterar" class="botaoAlterar" (click)="alterar()"> -->
+      <input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)">
     </table>
 
     <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco(produtos)">
