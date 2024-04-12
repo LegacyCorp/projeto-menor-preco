@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { ProdutoService } from '../../service/produto.service';
 import { HttpClient } from '@angular/common/http';
 import { ProdutoData } from '../../models/ProdutoData';
+import { MenorPrecoComponent } from '../menor-preco/menor-preco.component';
 
 @Component({
   selector: 'app-produto-incluir',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MenorPrecoComponent],
   templateUrl: './produto-incluir.component.html',
   styleUrl: './produto-incluir.component.css'
 })

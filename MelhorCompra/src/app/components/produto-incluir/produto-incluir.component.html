@@ -20,7 +20,6 @@
   <h1>LISTA DE COMPRAS</h1>
   
     <table class="table">
-      
       <thead>
         <tr>
           <th class="numberProduct">#</th>
@@ -40,9 +39,6 @@
             <td><input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)"></td>
           </tr>
       </tbody>
-
-      <!-- <input type="button" value="Alterar" class="botaoAlterar" (click)="alterar()">
-      <input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)">  -->
     </table>
 
     <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco(produtos)">
@@ -52,35 +48,7 @@
 <div>
   <h1>OPÇÕES DE COMPRA / PREÇO</h1>
 
-  <div>
-
-    <h1>Opção #1. Menor Preço</h1>
-    <table class="table">
-      
-      <thead>
-        <tr>
-          <th class="numberProduct">#</th>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Quantidade</th>
-          <th>Preço Total</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr *ngFor="let produto of listaMenorPreco; index as i">
-          <td>{{i+1}}</td>
-          <td>{{produto.desc}}</td>
-          <td>`R$ {{produto.precoMin}}`</td>
-          <td>{{produto.quantidade}}</td>
-          <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h1>`Preço total da compra: R$ {{precoTotalListaMenorPreco.toFixed(2)}}`</h1>
-  </div>
-
+  <app-menor-preco [listaProdutos]="listaMenorPreco" [precoTotalProdutos]="precoTotalListaMenorPreco"></app-menor-preco>
     
   <div>
     <h1>opção #2. Menor Preço Levando em Consideração Distância (até 2km)</h1>
