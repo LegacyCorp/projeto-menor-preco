@@ -27,20 +27,22 @@
           <th>Nome</th>
           <th>Marca</th>
           <th>Quantidade</th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let p of produtos; index as i">
-          <td>{{i+1}}</td>
-          <td>{{p.nome}}</td>
-          <td>{{p.marca}}</td>
-          <td>{{p.quantidade}}</td>
-        </tr>
+          <tr *ngFor="let p of produtos; index as i">
+            <td>{{i+1}}</td>
+            <td>{{p.nome}}</td>
+            <td>{{p.marca}}</td>
+            <td>{{p.quantidade}}</td>
+            <td><input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)"></td>
+          </tr>
       </tbody>
 
-      <!-- <input type="button" value="Alterar" class="botaoAlterar" (click)="alterar()"> -->
-      <input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)">
+      <!-- <input type="button" value="Alterar" class="botaoAlterar" (click)="alterar()">
+      <input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)">  -->
     </table>
 
     <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco(produtos)">
