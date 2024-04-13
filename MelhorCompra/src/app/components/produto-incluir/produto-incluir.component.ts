@@ -6,11 +6,13 @@ import { ProdutoService } from '../../service/produto.service';
 import { HttpClient } from '@angular/common/http';
 import { ProdutoData } from '../../models/ProdutoData';
 import { MenorPrecoComponent } from '../menor-preco/menor-preco.component';
+import { MenorPrecoDistanciaComponent } from '../menor-preco-distancia/menor-preco-distancia.component';
+import { MenorPrecoAppComponent } from '../menor-preco-app/menor-preco-app.component';
 
 @Component({
   selector: 'app-produto-incluir',
   standalone: true,
-  imports: [CommonModule, FormsModule, MenorPrecoComponent],
+  imports: [CommonModule, FormsModule, MenorPrecoComponent, MenorPrecoDistanciaComponent, MenorPrecoAppComponent],
   templateUrl: './produto-incluir.component.html',
   styleUrl: './produto-incluir.component.css'
 })

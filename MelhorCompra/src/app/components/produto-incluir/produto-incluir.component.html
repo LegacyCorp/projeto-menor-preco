@@ -1,19 +1,31 @@
 
-<div class="container_produto_incluir">
-  <h1>INCLUIR PRODUTO NA CESTA DE COMPRAS</h1>
-  
-  <h3>Nome do Produto</h3>
-  <input type="text" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
+<div class="card">
 
-  <h3>Marca (opcional)</h3>
-  <input type="text" name="marca" id="marca" placeholder="----------" [(ngModel)]="produto.marca">
+  <div class="card-header">
+    Incluir Produto na Cesta de Compras
+  </div>
 
-  <h3>Quantidade</h3>
-  <input type="text" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
+  <div class="card-body">
 
-  <input type="text" value="{{produtos.length}}" name="codigo" id="codigo" hidden="true" [(ngModel)]="produto.codigo">
-  
-  <input type="button" value="Cadastrar" class="btn" (click)="cadastrarProduto()">
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="nome-produto">Nome do Produto</span>
+      <input type="text" class="form-control" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
+    </div>
+
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="marca">Marca (opcional)</span>
+      <input type="text" class="form-control" name="marca" id="marca" placeholder="----------" [(ngModel)]="produto.marca">
+    </div>
+
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="quantidade">Quantidade</span>
+      <input type="text" class="form-control" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
+    </div>
+
+    <input type="text" value="{{produtos.length}}" name="codigo" id="codigo" hidden="true" [(ngModel)]="produto.codigo">
+    
+    <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarProduto()">
+  </div>
 </div>
 
 <div class="container_lista_compra">
@@ -47,67 +59,7 @@
 
 <div>
   <h1>OPÇÕES DE COMPRA / PREÇO</h1>
-
   <app-menor-preco [listaProdutos]="listaMenorPreco" [precoTotalProdutos]="precoTotalListaMenorPreco"></app-menor-preco>
-    
-  <div>
-    <h1>opção #2. Menor Preço Levando em Consideração Distância (até 2km)</h1>
-    <table class="table">
-      
-      <thead>
-        <tr>
-          <th class="numberProduct">#</th>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Quantidade</th>
-          <th>Distância</th>
-          <th>Estabelecimento</th>
-          <th>Preço Total</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr *ngFor="let produto of listaMenorPrecoComDistancia; index as i">
-          <td>{{i+1}}</td>
-          <td>{{produto.desc}}</td>
-          <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
-          <td>{{produto.quantidade}}</td>
-          <td>{{produto.distkm}}</td>
-          <td>{{produto.nm_empresa}}</td>
-          <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h1>`Preço total da compra: R$ {{(precoTotalListaMenorPrecoConsiderandoDistancia).toFixed(2)}}`</h1>
-  </div>
-
-  <div>
-    <h1>opção #3. Menor Preço <strong style="color: yellow;">ENTREGUE EM SUA CASA</strong></h1>
-    <table class="table">
-      
-      <thead>
-        <tr>
-          <th class="numberProduct">#</th>
-          <th>Nome</th>
-          <th>Preço</th>
-          <th>Quantidade</th>
-          <th>Preço Total</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr *ngFor="let produto of listaMenorPrecoDoApp; index as i">
-          <td>{{i+1}}</td>
-          <td>{{produto.desc}}</td>
-          <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
-          <td>{{produto.quantidade}}</td>
-          <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h1>`Preço total da compra: R$ {{precoTotalListaMenorPrecoDoApp.toFixed(2)}}`</h1>
-  </div>
-
+  <app-menor-preco-distancia [listaProdutos]="listaMenorPrecoComDistancia" [precoTotalProdutos]="precoTotalListaMenorPrecoConsiderandoDistancia"></app-menor-preco-distancia>
+  <app-menor-preco-app [listaProdutos]="listaMenorPrecoDoApp" [precoTotalProdutos]="precoTotalListaMenorPrecoDoApp"></app-menor-preco-app>
 </div>
