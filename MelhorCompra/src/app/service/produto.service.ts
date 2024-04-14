@@ -32,7 +32,7 @@ export class ProdutoService {
     */
 
     this.produtoData = this.http.
-                      get<ProdutoData>(`${this.urlMenorPreco}${produto.nome}&categoria=55&offset=0&raio=2&data=-1&ordem=0`)
+                      get<ProdutoData>(`${this.urlMenorPreco}${produto.nome}&categoria=${produto.categoria}&offset=0&raio=2&data=-1&ordem=0`)
 
     return this.produtoData
     

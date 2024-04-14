@@ -1,0 +1,8 @@
+.w_150 {
+  width: 150px;
+}
+
+.align-right {
+  display: flex;
+  justify-content:end;
+}

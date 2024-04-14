@@ -3,6 +3,7 @@ export class Produto {
     nome:string = ""
     marca:string = ""
     quantidade: number = 0
+    categoria: string = ""
 
     precoMax: string | any = ""
     precoMin: string | any = ""
