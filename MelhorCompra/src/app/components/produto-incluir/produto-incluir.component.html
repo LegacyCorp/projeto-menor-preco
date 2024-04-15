@@ -1,83 +1,101 @@
 
-<div class="card shadow-sm mb-5">
+<div class="d-flex">
 
-  <div class="card-header">
-    Incluir Produto na Cesta de Compras
+  <div class="orientacao">
+    <h3>#1.</h3>
+    <h1>Inclua produtos na sua Lista de Compras</h1>
   </div>
 
-  <div class="card-body">
-    <div class="input-group mb-3 shadow-sm">
-      <span class="input-group-text w_150" id="nome-produto">Nome do Produto</span>
-      <input type="text" class="form-control" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
+  <div class="card shadow-sm mb-5" style="min-width: 401px;">
+
+    <div class="card-header">
+      Selecione os produtos que mais gosta de forma fácil
     </div>
 
-    <div class="input-group mb-3 shadow-sm">
-      <span class="input-group-text  w_150" id="marca">Marca (opcional)</span>
-      <input type="text" class="form-control" name="marca" id="marca" placeholder="----------" [(ngModel)]="produto.marca">
-    </div>
+    <div class="card-body">
+      <div class="input-group mb-3 shadow-sm">
+        <span class="input-group-text w_150" id="nome-produto">Nome do Produto</span>
+        <input type="text" class="form-control" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
+      </div>
 
-    <div class="input-group mb-3 shadow-sm">
-      <span class="input-group-text  w_150" id="marca">Categoria</span>
-      <select name="categoria" id="categoria" class="form-select" [(ngModel)]="produto.categoria">
-        <option selected>Escolha.....</option>
-        <option value="54">Macarrao</option>
-        <option value="55">Bebidas</option>
-        <option value="56">Carnes</option>
-        <option value="57">Brinquedos</option>
-      </select>
-    </div>
+      <div class="input-group mb-3 shadow-sm">
+        <span class="input-group-text  w_150" id="marca">Marca (opcional)</span>
+        <input type="text" class="form-control" name="marca" id="marca" placeholder="----------" [(ngModel)]="produto.marca">
+      </div>
 
-    <div class="input-group mb-3 shadow-sm">
-      <span class="input-group-text w_150" id="quantidade">Quantidade</span>
-      <input type="text" class="form-control ps-md" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
-    </div>
+      <div class="input-group mb-3 shadow-sm">
+        <span class="input-group-text  w_150" id="marca">Categoria</span>
+        <select name="categoria" id="categoria" class="form-select" [(ngModel)]="produto.categoria">
+          <option selected>Escolha.....</option>
+          <option value="54">Macarrao</option>
+          <option value="55">Bebidas</option>
+          <option value="56">Carnes</option>
+          <option value="57">Brinquedos</option>
+        </select>
+      </div>
 
-    <div>
-      <input type="text" value="{{produtos.length}}" name="codigo" id="codigo" hidden="true" [(ngModel)]="produto.codigo">
-    </div>
-    
-    <div class="align-right">
-      <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarProduto()">
+      <div class="input-group mb-3 shadow-sm">
+        <span class="input-group-text w_150" id="quantidade">Quantidade</span>
+        <input type="text" class="form-control ps-md" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
+      </div>
+
+      <div>
+        <input type="text" value="{{produtos.length}}" name="codigo" id="codigo" hidden="true" [(ngModel)]="produto.codigo">
+      </div>
+      
+      <div class="align-right">
+        <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarProduto()">
+      </div>
     </div>
   </div>
+
 </div>
 
-<div class="card shadow-sm mb-5">
-  <div class="card-header">
-    Lista de Compras
+<div class="d-flex">
+
+  <div class="orientacao">
+    <h3>#2.</h3>
+    <h1>Confira sua Lista e Busque pelo Melhor Preço</h1>
   </div>
-  
-  <div class="card-body">
-  
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr class="align-middle">
-            <th>#</th>
-            <th>Nome</th>
-            <th>Marca</th>
-            <th>Quantidade</th>
-            <th></th>
-          </tr>
-        </thead>
-        
-        <tbody class="table-group-divider">
-          <tr *ngFor="let p of produtos; index as i">
-            <td>{{i+1}}</td>
-            <td>{{p.nome}}</td>
-            <td>{{p.marca}}</td>
-            <td>{{p.quantidade}}</td>
-            <td><input type="button" value="Remover" class="btn btn-secondary" (click)="remover(produto.codigo)"></td>
-          </tr>
-        </tbody>
-      </table>
+
+  <div class="card shadow-sm mb-5" style="min-height: 300px; min-width: 401px;">
+    <div class="card-header">
+      Lista de Compras
     </div>
     
-    <div class="align-right">
-      <input type="button" value="Procurar Melhor Preço" class="btn btn-primary" (click)="procurarMelhorPreco(produtos)">
-    </div>
+    <div class="card-body">
     
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr class="align-middle">
+              <th>#</th>
+              <th>Nome</th>
+              <th>Marca</th>
+              <th>Quantidade</th>
+              <th></th>
+            </tr>
+          </thead>
+          
+          <tbody class="table-group-divider">
+            <tr *ngFor="let p of produtos; index as i">
+              <td>{{i+1}}</td>
+              <td>{{p.nome}}</td>
+              <td>{{p.marca}}</td>
+              <td>{{p.quantidade}}</td>
+              <td><input type="button" value="Remover" class="btn btn-secondary" (click)="remover(produto.codigo)"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="align-right">
+        <input type="button" value="Procurar Melhor Preço" class="btn btn-primary" (click)="procurarMelhorPreco(produtos)">
+      </div>
+      
+    </div>
   </div>
+
 </div>
 
 <div>

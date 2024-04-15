@@ -16,3 +16,9 @@
   align-items: center;
   max-width: 600px;
 }
+
+.orientacao {
+  max-width: 300px;
+  margin-right: 50px;
+  align-content: center;
+}
