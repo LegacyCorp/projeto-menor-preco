@@ -6,3 +6,13 @@
   display: flex;
   justify-content:end;
 }
+
+.display-opcoes-compra {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+}

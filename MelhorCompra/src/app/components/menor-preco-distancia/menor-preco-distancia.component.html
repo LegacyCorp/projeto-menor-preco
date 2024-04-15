@@ -1,31 +1,38 @@
-<div>
-  <h1>opção #2. Menor Preço Levando em Consideração Distância (até 2km)</h1>
-  <table class="table">
-    
-    <thead>
-      <tr>
-        <th class="numberProduct">#</th>
-        <th>Nome</th>
-        <th>Preço</th>
-        <th>Quantidade</th>
-        <th>Distância</th>
-        <th>Estabelecimento</th>
-        <th>Preço Total</th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr *ngFor="let produto of listaProdutos; index as i">
-        <td>{{i+1}}</td>
-        <td>{{produto.desc}}</td>
-        <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
-        <td>{{produto.quantidade}}</td>
-        <td>{{produto.distkm}}</td>
-        <td>{{produto.nm_empresa}}</td>
-        <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="card shadow-sm mb-5">
+  <div class="card-header">
+    Opção #2. Menor Preço Levando em Consideração Distância (até 2km)
+  </div>
 
-  <h1>`Preço total da compra: R$ {{(precoTotalProdutos).toFixed(2)}}`</h1>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped">        
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Distância</th>
+            <th>Estabelecimento</th>
+            <th>Preço Total</th>
+          </tr>
+        </thead>
+        
+        <tbody class="table-group-divider">
+          <tr *ngFor="let produto of listaProdutos; index as i">
+            <td>{{i+1}}</td>
+            <td>{{produto.desc}}</td>
+            <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
+            <td>{{produto.quantidade}}</td>
+            <td>{{produto.distkm}}</td>
+            <td>{{produto.nm_empresa}}</td>
+            <td>R$ {{(produto.precoTotal).toFixed(2)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <div>
+    <h1 class="btn btn-secondary">`Preço total da compra: R$ {{(precoTotalProdutos).toFixed(2)}}`</h1>
+  </div>
 </div>

@@ -1,12 +1,11 @@
 
-<div class="card shadow-sm mb-5 ">
+<div class="card shadow-sm mb-5">
 
   <div class="card-header">
     Incluir Produto na Cesta de Compras
   </div>
 
   <div class="card-body">
-
     <div class="input-group mb-3 shadow-sm">
       <span class="input-group-text w_150" id="nome-produto">Nome do Produto</span>
       <input type="text" class="form-control" name="nome" id="nome" placeholder="----------" [(ngModel)]="produto.nome">
@@ -30,7 +29,7 @@
 
     <div class="input-group mb-3 shadow-sm">
       <span class="input-group-text w_150" id="quantidade">Quantidade</span>
-      <input type="text" class="form-control" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
+      <input type="text" class="form-control ps-md" name="quantidade" id="quantidade" placeholder="----------" [(ngModel)]="produto.quantidade">
     </div>
 
     <div>
@@ -40,43 +39,52 @@
     <div class="align-right">
       <input type="button" value="Cadastrar" class="btn btn-primary" (click)="cadastrarProduto()">
     </div>
-    
-    
   </div>
 </div>
 
-<div class="container_lista_compra">
-  <h1>LISTA DE COMPRAS</h1>
+<div class="card shadow-sm mb-5">
+  <div class="card-header">
+    Lista de Compras
+  </div>
   
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="numberProduct">#</th>
-          <th>Nome</th>
-          <th>Marca</th>
-          <th>Quantidade</th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
+  <div class="card-body">
+  
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr class="align-middle">
+            <th>#</th>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Quantidade</th>
+            <th></th>
+          </tr>
+        </thead>
+        
+        <tbody class="table-group-divider">
           <tr *ngFor="let p of produtos; index as i">
             <td>{{i+1}}</td>
             <td>{{p.nome}}</td>
             <td>{{p.marca}}</td>
             <td>{{p.quantidade}}</td>
-            <td><input type="button" value="Remover" class="btn" (click)="remover(produto.codigo)"></td>
+            <td><input type="button" value="Remover" class="btn btn-secondary" (click)="remover(produto.codigo)"></td>
           </tr>
-      </tbody>
-    </table>
-
-    <input type="button" value="Procurar Melhor Preço" class="btn" (click)="procurarMelhorPreco(produtos)">
-
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="align-right">
+      <input type="button" value="Procurar Melhor Preço" class="btn btn-primary" (click)="procurarMelhorPreco(produtos)">
+    </div>
+    
+  </div>
 </div>
 
 <div>
   <h1>OPÇÕES DE COMPRA / PREÇO</h1>
-  <app-menor-preco [listaProdutos]="listaMenorPreco" [precoTotalProdutos]="precoTotalListaMenorPreco"></app-menor-preco>
-  <app-menor-preco-distancia [listaProdutos]="listaMenorPrecoComDistancia" [precoTotalProdutos]="precoTotalListaMenorPrecoConsiderandoDistancia"></app-menor-preco-distancia>
-  <app-menor-preco-app [listaProdutos]="listaMenorPrecoDoApp" [precoTotalProdutos]="precoTotalListaMenorPrecoDoApp"></app-menor-preco-app>
+  <div class="display-opcoes-compra">
+    <app-menor-preco [listaProdutos]="listaMenorPreco" [precoTotalProdutos]="precoTotalListaMenorPreco"></app-menor-preco>
+    <app-menor-preco-distancia [listaProdutos]="listaMenorPrecoComDistancia" [precoTotalProdutos]="precoTotalListaMenorPrecoConsiderandoDistancia"></app-menor-preco-distancia>
+    <app-menor-preco-app [listaProdutos]="listaMenorPrecoDoApp" [precoTotalProdutos]="precoTotalListaMenorPrecoDoApp"></app-menor-preco-app>
+  </div>
 </div>
