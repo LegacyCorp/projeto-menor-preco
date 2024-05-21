@@ -29,6 +29,7 @@ export class ProdutoIncluirComponent {
   precoTotalListaMenorPrecoDoApp: number = 0
   
   produtos:Produto[] = []
+  distancia: number = 0
   listaMenorPreco: Produto[] = []
   listaMenorPrecoComDistancia: Produto[] = []
   listaMenorPrecoDoApp : Produto[] = []
@@ -50,7 +51,7 @@ export class ProdutoIncluirComponent {
      alert('Produto cadastrado com sucesso!')
   }
 
-  procurarMelhorPreco(produtos:Produto[]) {
+  procurarMelhorPreco(produtos:Produto[], distancia:number) {
 
     //Limpar lista de compras
     this.listaMenorPreco = []
@@ -58,7 +59,7 @@ export class ProdutoIncluirComponent {
     this.listaMenorPrecoDoApp = []
 
     produtos.forEach(produto => {
-      this.service.procurarMelhorPreco(produto).subscribe(
+      this.service.procurarMelhorPreco(produto, distancia).subscribe(
         {
           next: (res) => {
 

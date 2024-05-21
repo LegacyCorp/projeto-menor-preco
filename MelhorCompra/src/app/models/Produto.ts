@@ -4,6 +4,7 @@ export class Produto {
     marca:string = ""
     quantidade: number = 0
     categoria: string = ""
+    distancia: number = 0
 
     precoMax: string | any = ""
     precoMin: string | any = ""

@@ -14,6 +14,7 @@ export class ProdutoService {
   //+ "&categoria=55&offset=0&raio=2&data=-1&ordem=0"
 
   private nomeProduto: string = ""
+  private distanciaProduto: number = 2
   private produtoData:ProdutoData | any
 
   constructor(private http:HttpClient) { }
@@ -22,7 +23,7 @@ export class ProdutoService {
     return this.http.post<Produto>(this.url, obj)
   }
 
-  procurarMelhorPreco(produto:Produto):Observable<ProdutoData> {
+  procurarMelhorPreco(produto:Produto, distancia: number):Observable<ProdutoData> {
 
     //Verifica se o array esta vazio
     /*
@@ -35,7 +36,7 @@ export class ProdutoService {
     this.nomeProduto.replace(" ", "%20")
 
     this.produtoData = this.http.
-                      get<ProdutoData>(`${this.urlMenorPreco}${this.nomeProduto}&categoria=${produto.categoria}&offset=0&raio=2&data=-1&ordem=0`)
+                      get<ProdutoData>(`${this.urlMenorPreco}${this.nomeProduto}&categoria=${produto.categoria}&offset=0&raio=${distancia}&data=-1&ordem=0`)
 
     return this.produtoData
     
