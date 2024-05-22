@@ -13,5 +13,6 @@ export class MenorPrecoDistanciaComponent {
 
   @Input() listaProdutos: Produto[] = []
   @Input() precoTotalProdutos: number = 0
+  @Input() distancia: number = 0
 
 }

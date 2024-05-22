@@ -19,7 +19,7 @@ import { MenorPrecoAppComponent } from '../menor-preco-app/menor-preco-app.compo
 
 export class ProdutoIncluirComponent {
 
-  porcentagem:number = 1.1
+  porcentagem:number = 1 // 1.1
 
   //objeto do tipo produto
   produto = new Produto()

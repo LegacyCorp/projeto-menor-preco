@@ -12,6 +12,8 @@
             <th>Nome</th>
             <th>Preço</th>
             <th>Quant.</th>
+            <th>Distância</th>
+            <th>Estabelec.</th>
             <th>Preço Total</th>
           </tr>
       </thead>
@@ -22,6 +24,8 @@
           <td>{{produto.desc}}</td>
           <td>`R$ {{produto.precoMin}}`</td>
           <td>{{produto.quantidade}}</td>
+          <td>{{produto.distkm}}</td>
+          <td>{{produto.nm_empresa}}</td>
           <td>`R$ {{(produto.precoTotal).toFixed(2)}}`</td>
         </tr>
       </tbody>
