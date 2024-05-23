@@ -13,6 +13,7 @@ export class Produto {
     valor: number = 0
     tempo: string | any = ""
     nm_empresa: string | any = ""
+    nm_fan: string | any = ""
     tp_logr:string | any = ""
     nm_logr:string | any = ""
     nr_logr:string | any = ""

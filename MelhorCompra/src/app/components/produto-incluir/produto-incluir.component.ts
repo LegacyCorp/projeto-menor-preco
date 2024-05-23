@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Produto } from '../../models/Produto';
 import { FormsModule } from '@angular/forms';
@@ -8,11 +8,12 @@ import { ProdutoData } from '../../models/ProdutoData';
 import { MenorPrecoComponent } from '../menor-preco/menor-preco.component';
 import { MenorPrecoDistanciaComponent } from '../menor-preco-distancia/menor-preco-distancia.component';
 import { MenorPrecoAppComponent } from '../menor-preco-app/menor-preco-app.component';
+import { MenorPrecoAngeloniComponent } from '../menor-preco-angeloni/menor-preco-angeloni.component';
 
 @Component({
   selector: 'app-produto-incluir',
   standalone: true,
-  imports: [CommonModule, FormsModule, MenorPrecoComponent, MenorPrecoDistanciaComponent, MenorPrecoAppComponent],
+  imports: [CommonModule, FormsModule, MenorPrecoComponent, MenorPrecoDistanciaComponent, MenorPrecoAppComponent, MenorPrecoAngeloniComponent],
   templateUrl: './produto-incluir.component.html',
   styleUrl: './produto-incluir.component.css'
 })
@@ -27,12 +28,14 @@ export class ProdutoIncluirComponent {
   precoTotalListaMenorPreco:number = 0
   precoTotalListaMenorPrecoConsiderandoDistancia: number = 0
   precoTotalListaMenorPrecoDoApp: number = 0
+  precoTotalListaMercadoAngeloni: number = 0
   
   produtos:Produto[] = []
   distancia: number = 0
   listaMenorPreco: Produto[] = []
   listaMenorPrecoComDistancia: Produto[] = []
   listaMenorPrecoDoApp : Produto[] = []
+  listaMenorPrecoMercadoAngeloni: Produto[] = []
 
   //Popular objeto quando fizer consulta
   produtoData?:ProdutoData
@@ -57,14 +60,14 @@ export class ProdutoIncluirComponent {
     this.listaMenorPreco = []
     this.listaMenorPrecoComDistancia = []
     this.listaMenorPrecoDoApp = []
+    this.listaMenorPrecoMercadoAngeloni = []
 
     produtos.forEach(produto => {
       this.service.procurarMelhorPreco(produto, distancia).subscribe(
         {
           next: (res) => {
 
-            console.log(res)
-            
+            //console.log(res)
             this.produtoData = {
               precos: {
                 max:res.precos.max,
@@ -88,6 +91,13 @@ export class ProdutoIncluirComponent {
             this.obterListaMenorPrecoConsiderandoDistancia(produto.quantidade)
             this.listaMenorPrecoComDistancia.push(this.produto)
             
+            //Limpar objeto
+            this.produto = new Produto()
+
+            //Buscar preco produtos no Mercado Angeloni
+            this.obterListaMenorPrecoMercadoAngeloni(produto.quantidade)
+            this.listaMenorPrecoMercadoAngeloni.push(this.produto)
+
             //Limpar objeto
             this.produto = new Produto()
 
@@ -117,7 +127,7 @@ export class ProdutoIncluirComponent {
     
     this.produtoData?.produtos.forEach(produto => {
       console.log(`Distancia: ${produto.distkm}`)
-      if(Number(produto.distkm) <= 2 && Number(produto.valor) < tempValor) {
+      if(Number(produto.distkm) <= this.distancia && Number(produto.valor) < tempValor) {
         index = tempIndex
         tempValor = Number(produto.valor)
         encontrouProdutoMaisBarato = true
@@ -130,8 +140,31 @@ export class ProdutoIncluirComponent {
     if(encontrouProdutoMaisBarato)
       this.popularObjetoProduto(quantidade, index)
     else
-      alert("Não foi encontrado produto mais barato em um raio de 2Km!")
+      alert(`Não foi encontrado produto mais barato em um raio de ${this.distancia}Km!`)
     
+  }
+
+  obterListaMenorPrecoMercadoAngeloni(quantidade: number): void {
+    let tempValor: number = Number(this.produtoData?.precos.max)
+    let tempIndex: number = 0
+    let index: number = 0
+    let encontrouProdutoMaisBarato = false
+    
+    this.produtoData?.produtos.forEach(produto => {
+      if(Number(produto.distkm) <= this.distancia && Number(produto.valor) < tempValor &&
+          (produto.estabelecimento.nm_emp.includes("ANGELONI") || produto.estabelecimento.nm_fan.includes("ANGELONI"))) {
+        index = tempIndex
+        tempValor = Number(produto.valor)
+        encontrouProdutoMaisBarato = true
+      }
+
+      tempIndex +=1
+    });
+
+    if(encontrouProdutoMaisBarato)
+      this.popularObjetoProduto(quantidade, index)
+    else
+      alert(`Não foi encontrado produto mais barato em um raio de ${this.distancia}Km!`)
   }
 
   obterListaMenorPreco(quantidade: number): void {
@@ -147,6 +180,7 @@ export class ProdutoIncluirComponent {
     this.produto.valor = Number(this.produtoData?.produtos?.at(index)?.valor)
     this.produto.tempo = this.produtoData?.produtos?.at(index)?.tempo
     this.produto.nm_empresa = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_emp
+    this.produto.nm_fan = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_fan
     this.produto.nm_logr = this.produtoData?.produtos?.at(index)?.estabelecimento?.nm_logr
     this.produto.nr_logr = this.produtoData?.produtos?.at(index)?.estabelecimento.nr_logr
     this.produto.bairro = this.produtoData?.produtos?.at(index)?.estabelecimento.bairro
@@ -162,6 +196,7 @@ export class ProdutoIncluirComponent {
     this.precoTotalListaMenorPreco = 0
     this.precoTotalListaMenorPrecoConsiderandoDistancia = 0
     this.precoTotalListaMenorPrecoDoApp = 0
+    this.precoTotalListaMercadoAngeloni = 0
 
     this.listaMenorPreco.forEach(produto => {
       this.precoTotalListaMenorPreco += (produto.precoTotal)
@@ -173,6 +208,10 @@ export class ProdutoIncluirComponent {
 
     this.listaMenorPrecoDoApp.forEach(produto => {
       this.precoTotalListaMenorPrecoDoApp += (produto.precoTotal)
+    });
+
+    this.listaMenorPrecoMercadoAngeloni.forEach(produto => {
+      this.precoTotalListaMercadoAngeloni += (produto.precoTotal)
     });
 
   }

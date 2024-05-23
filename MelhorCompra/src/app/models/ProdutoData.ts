@@ -11,6 +11,7 @@ export type ProdutoData = {
     tempo:string
     estabelecimento: {
       nm_emp:string
+      nm_fan:string
       tp_logr:string
       nm_logr:string
       nr_logr:string

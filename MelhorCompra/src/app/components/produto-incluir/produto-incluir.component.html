@@ -30,6 +30,7 @@
           <select name="categoria" id="categoria" class="form-select" [(ngModel)]="produto.categoria">
             <option selected>Escolha.....</option>
             <option value="5">Cafés e Chás</option>
+            <option value="6">Cereais</option>
             <option value="12">Conservas, Extratos, Geléias e Sucos</option>
             <option value="13">Preparos Alimentícios</option>
             <option value="21">Perfumaria e Beleza</option>
@@ -96,11 +97,11 @@
         
          <div class="input-group mb-3 shadow-sm">
           <span class="input-group-text w_200" id="distancia">Procurar em um raio (Km)</span>
-          <input type="text" class="form-control ps-md" name="distancia" id="distancia" placeholder="----------">
+          <input type="text" class="form-control ps-md" name="distancia" id="distancia" placeholder="----------" [(ngModel)]="distancia">
         </div>
 
         <div class="align-right">
-          <input type="button" value="Procurar Melhor Preço" class="btn btn-primary" (click)="procurarMelhorPreco(produtos, distancia)">
+          <input type="button" value="Procurar Melhor Preço" class="btn btn-primary" (click)="procurarMelhorPreco(produtos,  distancia)">
         </div>
         
       </div>
@@ -114,6 +115,7 @@
       <app-menor-preco [listaProdutos]="listaMenorPreco" [precoTotalProdutos]="precoTotalListaMenorPreco"></app-menor-preco>
       <app-menor-preco-distancia [listaProdutos]="listaMenorPrecoComDistancia" [precoTotalProdutos]="precoTotalListaMenorPrecoConsiderandoDistancia" [distancia]="distancia"></app-menor-preco-distancia>
       <!-- <app-menor-preco-app [listaProdutos]="listaMenorPrecoDoApp" [precoTotalProdutos]="precoTotalListaMenorPrecoDoApp"></app-menor-preco-app> -->
+      <app-menor-preco-angeloni [listaProdutos]="listaMenorPrecoMercadoAngeloni" [precoTotalProdutos]="precoTotalListaMercadoAngeloni"></app-menor-preco-angeloni>
     </div>
   </div>
 

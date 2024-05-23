@@ -32,11 +32,14 @@ export class ProdutoService {
       return "Nenhum produto fornecido."
     }
     */
+    this.distanciaProduto = distancia
     this.nomeProduto = produto.nome
     this.nomeProduto.replace(" ", "%20")
 
+    alert(`this.distancia : ${this.distanciaProduto}`)
+
     this.produtoData = this.http.
-                      get<ProdutoData>(`${this.urlMenorPreco}${this.nomeProduto}&categoria=${produto.categoria}&offset=0&raio=${distancia}&data=-1&ordem=0`)
+                      get<ProdutoData>(`${this.urlMenorPreco}${this.nomeProduto}&categoria=${produto.categoria}&offset=0&raio=${this.distanciaProduto}&data=3&ordem=0`)
 
     return this.produtoData
     
