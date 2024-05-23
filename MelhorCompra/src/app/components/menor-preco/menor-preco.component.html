@@ -22,7 +22,7 @@
         <tr *ngFor="let produto of listaProdutos; index as i">
           <td>{{i+1}}</td>
           <td>{{produto.desc}}</td>
-          <td>`R$ {{produto.precoMin}}`</td>
+          <td>`R$ {{(produto.valor).toFixed(2)}}`</td>
           <td>{{produto.quantidade}}</td>
           <td>{{produto.distkm}}</td>
           <td>{{produto.nm_empresa}}</td>

@@ -39,7 +39,7 @@ export class ProdutoService {
     alert(`this.distancia : ${this.distanciaProduto}`)
 
     this.produtoData = this.http.
-                      get<ProdutoData>(`${this.urlMenorPreco}${this.nomeProduto}&categoria=${produto.categoria}&offset=0&raio=${this.distanciaProduto}&data=3&ordem=0`)
+                      get<ProdutoData>(`${this.urlMenorPreco}${this.nomeProduto}&categoria=${produto.categoria}&offset=100&raio=${this.distanciaProduto}&data=0&ordem=0`)
 
     return this.produtoData
     
