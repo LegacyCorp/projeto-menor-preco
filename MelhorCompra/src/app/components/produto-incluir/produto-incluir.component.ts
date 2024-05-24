@@ -10,11 +10,12 @@ import { MenorPrecoDistanciaComponent } from '../menor-preco-distancia/menor-pre
 import { MenorPrecoAppComponent } from '../menor-preco-app/menor-preco-app.component';
 import { MenorPrecoAngeloniComponent } from '../menor-preco-angeloni/menor-preco-angeloni.component';
 import { MenorPrecoCarrefourComponent } from '../menor-preco-carrefour/menor-preco-carrefour.component';
+import { MenorPrecoCondorComponent } from '../menor-preco-condor/menor-preco-condor.component';
 
 @Component({
   selector: 'app-produto-incluir',
   standalone: true,
-  imports: [CommonModule, FormsModule, MenorPrecoComponent, MenorPrecoDistanciaComponent, MenorPrecoAppComponent, MenorPrecoAngeloniComponent, MenorPrecoCarrefourComponent],
+  imports: [CommonModule, FormsModule, MenorPrecoComponent, MenorPrecoDistanciaComponent, MenorPrecoAppComponent, MenorPrecoAngeloniComponent, MenorPrecoCarrefourComponent, MenorPrecoCondorComponent],
   templateUrl: './produto-incluir.component.html',
   styleUrl: './produto-incluir.component.css'
 })
@@ -32,6 +33,7 @@ export class ProdutoIncluirComponent {
 
   precoTotalListaMercadoAngeloni: number = 0
   precoTotalListaMercadoCarrefour: number = 0
+  precoTotalListaMercadoCondor: number = 0
   
   produtos:Produto[] = []
   distancia: number = 0
@@ -41,6 +43,7 @@ export class ProdutoIncluirComponent {
 
   listaMenorPrecoMercadoAngeloni: Produto[] = []
   listaMenorPrecoMercadoCarrefour: Produto[] = []
+  listaMenorPrecoMercadoCondor: Produto[] = []
 
   //Popular objeto quando fizer consulta
   produtoData?:ProdutoData
@@ -67,6 +70,7 @@ export class ProdutoIncluirComponent {
     this.listaMenorPrecoDoApp = []
     this.listaMenorPrecoMercadoAngeloni = []
     this.listaMenorPrecoMercadoCarrefour = []
+    this.listaMenorPrecoMercadoCondor = []
 
     produtos.forEach(produto => {
       this.service.procurarMelhorPreco(produto, distancia).subscribe(
@@ -110,6 +114,13 @@ export class ProdutoIncluirComponent {
             //Buscar preco produtos no Mercado Carrefour
             this.obterListaMenorPrecoMercadoCarrefour(produto.quantidade)
             this.listaMenorPrecoMercadoCarrefour.push(this.produto)
+
+            //Limpar objeto
+            this.produto = new Produto()
+
+            //Buscar preco produtos no Mercado Condor
+            this.obterListaMenorPrecoMercadoCondor(produto.quantidade)
+            this.listaMenorPrecoMercadoCondor.push(this.produto)
 
             //Limpar objeto
             this.produto = new Produto()
@@ -203,6 +214,29 @@ export class ProdutoIncluirComponent {
       alert(`Não foi encontrado produto mais barato em um raio de ${this.distancia}Km!`)
   }
 
+  obterListaMenorPrecoMercadoCondor(quantidade: number): void {
+    let tempValor: number = Number(this.produtoData?.precos.max)
+    let tempIndex: number = 0
+    let index: number = 0
+    let encontrouProdutoMaisBarato = false
+    
+    this.produtoData?.produtos.forEach(produto => {
+      if(Number(produto.distkm) <= this.distancia && Number(produto.valor) < tempValor &&
+          (produto.estabelecimento.nm_emp.includes("CONDOR") || produto.estabelecimento.nm_fan.includes("CONDOR"))) {
+        index = tempIndex
+        tempValor = Number(produto.valor)
+        encontrouProdutoMaisBarato = true
+      }
+
+      tempIndex +=1
+    });
+
+    if(encontrouProdutoMaisBarato)
+      this.popularObjetoProduto(quantidade, index)
+    else
+      alert(`Não foi encontrado produto mais barato em um raio de ${this.distancia}Km!`)
+  }
+
   obterListaMenorPreco(quantidade: number): void {
     this.popularObjetoProduto(quantidade, 0)
   }
@@ -234,6 +268,7 @@ export class ProdutoIncluirComponent {
     this.precoTotalListaMenorPrecoDoApp = 0
     this.precoTotalListaMercadoAngeloni = 0
     this.precoTotalListaMercadoCarrefour = 0
+    this.precoTotalListaMercadoCondor = 0
 
     this.listaMenorPreco.forEach(produto => {
       this.precoTotalListaMenorPreco += (produto.precoTotal)
@@ -249,6 +284,10 @@ export class ProdutoIncluirComponent {
 
     this.listaMenorPrecoMercadoCarrefour.forEach(produto => {
       this.precoTotalListaMercadoCarrefour += (produto.precoTotal)
+    });
+
+    this.listaMenorPrecoMercadoCondor.forEach(produto => {
+      this.precoTotalListaMercadoCondor += (produto.precoTotal)
     });
 
   }
