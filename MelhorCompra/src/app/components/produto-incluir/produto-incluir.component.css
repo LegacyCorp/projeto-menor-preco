@@ -1,3 +1,7 @@
+* {
+  max-width: 540px;
+}
+
 .w_150 {
   width: 150px;
 }
