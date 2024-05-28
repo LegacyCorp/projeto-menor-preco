@@ -1,9 +1,11 @@
-* {
+.margin_components {
   max-width: 540px;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .w_150 {
-  width: 150px;
+  width: auto;
 }
 
 .align-right {
@@ -25,4 +27,28 @@
   max-width: 300px;
   margin-right: 50px;
   align-content: center;
+}
+
+.titulo_componente {
+  color: white;
+  background-color: #0d8142;
+  text-align: center;
+}
+
+.titulo_input {
+  color: white;
+  background-color: #2eb169;
+  width: 35%;
+  text-wrap: pretty;
+}
+
+.dimensoes_componente {
+ margin: 0 0 0 0; 
+}
+
+.botao {
+  background-color: #b1f5d0;
+  color: #1c8b20;
+  font-weight: bold; 
+  border-color: #1c8b20;
 }
