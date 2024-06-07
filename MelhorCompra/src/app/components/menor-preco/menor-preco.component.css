@@ -1,0 +1,13 @@
+.titulo_componente {
+  color: white;
+  background-color: #0d8142;
+  text-align: center;
+}
+
+.preco_total {
+  color: white;
+  background-color: #2eb169;
+  width: 35%;
+  text-wrap: pretty;
+}
+
